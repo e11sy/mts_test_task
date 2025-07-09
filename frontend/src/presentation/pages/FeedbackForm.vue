@@ -1,6 +1,8 @@
 <template>
   <div :class="$style['form-block']">
     <div :class="$style['form-block__card']">
+      <div :class="$style['form-block__red-bar']" />
+      <div :class="$style['form-block__corner']" />
       <div :class="$style['form-block__left']">
         <h2 :class="$style['form-block__title']">Заполните форму</h2>
         <p :class="$style['form-block__description']">
@@ -13,7 +15,7 @@
       <div :class="$style['form-block__right']">
         <Select v-model="selectedOption" :items="selectOptions" placeholder="Выберите вариант" />
         <p v-if="selectError" :class="$style['form-block__error']">{{ selectError }}</p>
-        
+
         <Input
           v-model="emailModel"
           placeholder="Электронная почта"
@@ -26,6 +28,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { computed, watch, ref, onMounted } from 'vue';
 import { Button, Select, Input } from '../components';
@@ -107,24 +110,65 @@ function handleSubmit() {
 <style module>
 .form-block {
   font-family: Roboto, sans-serif;
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 40px 16px;
   background: #f5f6fa;
+  position: relative;
+  padding: 64px 16px;
 }
 
+
 .form-block__card {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background: white;
-  border-radius: 24px;
+  border-radius: 0 24px 24px 24px;
   padding: 40px;
   max-width: 1024px;
   width: 100%;
   gap: 32px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+.form-block__card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-left: 6px solid #ff0033;
+  border-bottom: 6px solid #ff0033;
+  border-bottom-left-radius: 64px;
+  box-sizing: border-box;
+}
+
+.form-block__red-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -4px;
+  width: 4px;
+  background-color: #ff0033;
+  border-bottom-left-radius: 24px;
+}
+
+.form-block__corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  background: #f5f6fa;
+  clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+  border-top-right-radius: 24px;
+}
+
+/* Содержимое */
 .form-block__left {
   flex: 1;
 }

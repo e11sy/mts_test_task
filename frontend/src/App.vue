@@ -8,5 +8,4 @@ import Popover from './presentation/components/Popover';
 </script>
 
 <style module>
-
 </style>
