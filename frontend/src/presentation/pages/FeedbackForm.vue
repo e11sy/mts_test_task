@@ -33,8 +33,8 @@ import { computed, watch, ref, onMounted } from 'vue';
 import { Button, Select, Input } from '../components';
 import useForm from '../../application/services/useForm';
 import useOption from '../../application/services/useOption';
-import { Form } from '../../domain/entities';
-import { ContextMenuItem } from '../components/ContextMenu';
+import { Form, Option } from '../../domain/entities';
+import { ContextMenuItem, DefaultItem } from '../components/ContextMenu';
 
 const { createForm } = useForm();
 const { options, getAllOptions } = useOption();
@@ -98,9 +98,20 @@ function handleSubmit() {
 
   if (hasError) return;
 
-  createForm(formData.value);
+  const optionTitle = (selectedOption.value! as DefaultItem).title;
 
-  // Очистка формы после успешной отправки
+  const completeSelectedOption: Option = {
+    title: optionTitle,
+    value: options.value.find((option) => option.title === optionTitle)!.value,
+  };
+
+  createForm({
+    content: JSON.stringify({
+      email: emailModel.value,
+      option: completeSelectedOption,
+    }),
+  });
+
   emailModel.value = '';
   selectedOption.value = undefined;
 }

@@ -21,7 +21,14 @@
     yarn install
    ```
 
-2. Запуск
+2. Установка переменных окружения
+   - Copy the `.env.sample` file to `.env`:
+     ```bash
+     cp .env.sample .env
+     ```
+   - Обновление `.env` файла - установка всех ключей
+
+3. Запуск
    ```bash
     yarn dev
    ```
