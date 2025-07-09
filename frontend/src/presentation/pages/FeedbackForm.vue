@@ -1,7 +1,6 @@
 <template>
   <div :class="$style['form-block']">
     <div :class="$style['form-block__card']">
-      <div :class="$style['form-block__red-bar']" />
       <div :class="$style['form-block__corner']" />
       <div :class="$style['form-block__left']">
         <h2 :class="$style['form-block__title']">Заполните форму</h2>
@@ -141,20 +140,10 @@ function handleSubmit() {
   left: 0;
   width: 100px;
   height: 100px;
-  border-left: 6px solid #ff0033;
-  border-bottom: 6px solid #ff0033;
-  border-bottom-left-radius: 64px;
-  box-sizing: border-box;
-}
-
-.form-block__red-bar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -4px;
-  width: 4px;
-  background-color: #ff0033;
+  border-left: 2px solid #ff0033;
+  border-bottom: 2px solid #ff0033;
   border-bottom-left-radius: 24px;
+  box-sizing: border-box;
 }
 
 .form-block__corner {
@@ -168,7 +157,6 @@ function handleSubmit() {
   border-top-right-radius: 24px;
 }
 
-/* Содержимое */
 .form-block__left {
   flex: 1;
 }
